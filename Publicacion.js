@@ -1,9 +1,11 @@
+import { Usuario } from "./Usuario.js"
+
 export class Publicacion {
     /** @type {string} */
     #titulo
     /** @type {string} */
     #descripcion
-    /** @type {string} */
+    /** @type {Usuario} */
     #autor
     /** @type {Date} */
     #fechaPublicacion
@@ -14,7 +16,7 @@ export class Publicacion {
      * 
      * @param {string} titulo 
      * @param {string} descripcion 
-     * @param {string} autor 
+     * @param {Usuario} autor 
      */
     constructor(titulo, descripcion, autor) {
         this.#titulo = titulo
@@ -25,8 +27,18 @@ export class Publicacion {
     }
 
     // Getters
+    /**
+     * @returns {string}
+     */
     get titulo() {
         return this.#titulo
+    }
+
+    /**
+     * @returns {Usuario}
+     */
+    get autor() {
+        return this.#autor
     }
 
     // Metodos
@@ -36,7 +48,7 @@ export class Publicacion {
      * @returns {string}
      */
     mostrarResumen() {
-        return `Titulo: ${this.#titulo} Autor: ${this.#autor}`
+        return `Titulo: ${this.#titulo} Autor: (${this.#autor.mostrarPerfil()})`
     }
 
     /**

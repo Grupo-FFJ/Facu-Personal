@@ -1,10 +1,16 @@
 import { Publicacion } from "./Publicacion.js";
+import { Usuario } from "./Usuario.js";
+
+const usuario1 = new Usuario("Manolo", "mail@1")
+const usuario2 = new Usuario("Romina", "mail@2")
+const usuario3 = new Usuario("Joaquin", "mail@3")
 
 const publicaciones = [
-    new Publicacion("Vendo comida", "Tengo empanadas y facturas", "Manolo"),
-    new Publicacion("Doy clases", "De tango", "Romina"),
-    new Publicacion("Vendo auto", "Gol", "Joaquin"),
-    new Publicacion("Particular de Mates", "Hasta analisi 2", "Mirko")
+    new Publicacion("Vendo comida", "Tengo empanadas y facturas", usuario1),
+    new Publicacion("Doy clases", "De tango", usuario3),
+    new Publicacion("Vendo auto", "Gol", usuario2),
+    new Publicacion("Particular de Mates", "Hasta analisi 2", usuario3),
+    new Publicacion("Otra publicacion", "No se me ocurre nada", usuario3)
 ]
 
 publicaciones[0].cambiarActiva()
@@ -12,13 +18,8 @@ publicaciones[2].cambiarActiva()
 
 publicaciones.forEach(p => console.log(`${p.mostrarResumen()} Activa: ${p.estaActiva()}`))
 
-publicaciones.push(new Publicacion("Otra publicacion", "No se me ocurre nada", "Yo"))
-publicaciones[4].cambiarActiva()
-
-console.log(publicaciones[4].mostrarResumen())
-
-
 const publicacionesActivas = publicaciones.filter(p => p.estaActiva())
-console.log(`Las publicaciones activas son ${publicacionesActivas.length}`)
+publicacionesActivas.forEach(p => console.log(`${p.mostrarResumen()} Activa: ${p.estaActiva()}`))
 
-publicacionesActivas.forEach(p => console.log(`Titulo: ${p.titulo}`))
+const primerPubli = publicaciones.find(p => p.autor.nombre == usuario3.nombre)
+console.log(primerPubli.mostrarResumen())
