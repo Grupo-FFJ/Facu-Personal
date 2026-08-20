@@ -19,7 +19,7 @@ export class RepositorioPublicaciones {
      * Devuelve el Array de Usuarios que tenga el mismo nombre que el dado.
      * 
      * @param {string} nombre 
-     * @returns {Array <Usuario>}
+     * @returns {Array <Publicacion>}
      */
     buscarPorUsuario(nombre) {
         return this.#publicaciones.filter(p => p.autor.nombre == nombre)

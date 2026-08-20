@@ -1,4 +1,5 @@
 import { Publicacion } from "./Publicacion.js";
+import { RepositorioPublicaciones } from "./RepositorioPublicaciones.js";
 import { Usuario } from "./Usuario.js";
 
 const usuario1 = new Usuario("Manolo", "mail@1")
@@ -23,3 +24,9 @@ publicacionesActivas.forEach(p => console.log(`${p.mostrarResumen()} Activa: ${p
 
 const primerPubli = publicaciones.find(p => p.autor.nombre == usuario3.nombre)
 console.log(primerPubli.mostrarResumen())
+
+const repositorioPublis = new RepositorioPublicaciones()
+publicaciones.forEach(p => repositorioPublis.agregar(p))
+
+console.log(repositorioPublis.cantidadTotal())
+repositorioPublis.buscarPorUsuario("Joaquin").forEach(p => console.log(p.mostrarResumen()))
