@@ -1,0 +1,12 @@
+{
+  "name": "gestor-publicaciones",
+  "version": "1.0.0",
+  "description": "hilo conductor de la materia",
+  "license": "ISC",
+  "author": "Facundo",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
