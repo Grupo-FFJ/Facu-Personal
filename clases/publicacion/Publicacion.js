@@ -1,4 +1,5 @@
-import { Usuario } from "./Usuario.js"
+import { Resenia } from "../Resenia.js"
+import { Usuario } from "../Usuario.js"
 
 export class Publicacion {
     /** @type {string} */
@@ -11,6 +12,8 @@ export class Publicacion {
     #fechaPublicacion
     /**@type {boolean} */
     #activa
+    /**@type {Array <Resenia>} */
+    #resenias
 
     /**
      * 
@@ -24,6 +27,7 @@ export class Publicacion {
         this.#autor = autor
         this.#fechaPublicacion = new Date()
         this.#activa = true
+        this.#resenias = []
     }
 
     // Getters
@@ -41,6 +45,10 @@ export class Publicacion {
         return this.#autor
     }
 
+    get fechaPublicacion() {
+        return this.#fechaPublicacion
+    }
+
     // Metodos
     /**
      * Devuelve un string corto combinando titulo y autor.
@@ -48,7 +56,7 @@ export class Publicacion {
      * @returns {string}
      */
     mostrarResumen() {
-        return `Titulo: ${this.#titulo} Autor: (${this.#autor.mostrarPerfil()})`
+        return `Titulo: ${this.#titulo} \nAutor: (${this.#autor.mostrarPerfil()})`
     }
 
     /**
@@ -66,4 +74,20 @@ export class Publicacion {
     cambiarActiva() {
         this.#activa = !this.#activa
     }
+
+    /**
+     * 
+     * @param {Resenia} resenia 
+     */
+    agregarResenia(resenia) {
+        this.#resenias.push(resenia)
+    }
+
+    promedioPuntaje() {
+        return this.#resenias.reduce((total, r) => total + r.puntaje, 0) / this.#resenias.length
+    }
+
+    // enviarResumenPorEmail(servicioDeEmail) {
+    //     servicioDeEmail.enviar(this.mostrarResumen())
+    // }
 }

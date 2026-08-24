@@ -1,4 +1,4 @@
-import { Publicacion } from "./Publicacion.js"
+import { Publicacion } from "./publicacion/Publicacion.js"
 
 export class RepositorioPublicaciones {
     /** @type {Array <Publicacion>} */
@@ -41,5 +41,37 @@ export class RepositorioPublicaciones {
      */
     cantidadTotal() {
         return this.#publicaciones.length
+    }
+
+    publicacionMasReciente() {
+        let pMasNueva = this.#publicaciones[0]
+        for (const p of this.#publicaciones) {
+            if (p.fechaPublicacion > pMasNueva.fechaPublicacion) {
+                pMasNueva = p
+            }
+        }
+        return pMasNueva
+    }
+
+    cantidadPorUsuario(nombre) {
+        let cantidad = 0
+        for (const p of this.#publicaciones) {
+            if (p.autor.nombre == nombre) {
+                cantidad++
+            }
+        }
+        return cantidad
+    }
+
+    existePublicacionActiva(titulo) {
+        let existe = false
+        if (this.#publicaciones.find(p => (p.titulo == titulo) && (p.estaActiva()))) {
+            existe = true
+        }
+        return existe
+    }
+
+    resumenGeneral() {
+        this.filtrarActivas
     }
 }

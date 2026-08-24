@@ -30,3 +30,5 @@ publicaciones.forEach(p => repositorioPublis.agregar(p))
 
 console.log(repositorioPublis.cantidadTotal())
 repositorioPublis.buscarPorUsuario("Joaquin").forEach(p => console.log(p.mostrarResumen()))
+
+console.log(repositorioPublis.publicacionMasReciente().mostrarResumen())
