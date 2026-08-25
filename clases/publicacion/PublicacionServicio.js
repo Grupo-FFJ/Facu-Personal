@@ -13,7 +13,7 @@ export class PublicacionServicio extends Publicacion {
     }
 
     /**
-     * Devuelve un string formado por el resumen de Publicacion, y ademas los atributos modalidad y duracion.
+     * Devuelve un string formado por el resumen de Publicacion, y ademas los atributos modalidad y  duracion.
      * 
      * @returns {string}
      */
