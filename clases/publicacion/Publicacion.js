@@ -45,6 +45,9 @@ export class Publicacion {
         return this.#autor
     }
 
+    /**
+     * @returns {Date}
+     */
     get fechaPublicacion() {
         return this.#fechaPublicacion
     }
@@ -76,6 +79,7 @@ export class Publicacion {
     }
 
     /**
+     * Agrega a la lista de resenias de la publicacion, un obj resenia nuevo dado.
      * 
      * @param {Resenia} resenia 
      */
@@ -83,6 +87,11 @@ export class Publicacion {
         this.#resenias.push(resenia)
     }
 
+    /**
+     * Devuelve el promedio del puntaje de todas las resenias de la publicacion.
+     * 
+     * @returns {Number}
+     */
     promedioPuntaje() {
         return this.#resenias.reduce((total, r) => total + r.puntaje, 0) / this.#resenias.length
     }

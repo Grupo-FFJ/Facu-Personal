@@ -43,6 +43,11 @@ export class RepositorioPublicaciones {
         return this.#publicaciones.length
     }
 
+    /**
+     * Devuelve la publicacion con la fecha mas actual.
+     * 
+     * @returns {Publicacion}
+     */
     publicacionMasReciente() {
         let pMasNueva = this.#publicaciones[0]
         for (const p of this.#publicaciones) {
@@ -53,6 +58,12 @@ export class RepositorioPublicaciones {
         return pMasNueva
     }
 
+    /**
+     * Busca la cantidad de publicaciones que hay con el nombre del autor dado.
+     * 
+     * @param {string} nombre 
+     * @returns {Number}
+     */
     cantidadPorUsuario(nombre) {
         let cantidad = 0
         for (const p of this.#publicaciones) {
@@ -63,6 +74,12 @@ export class RepositorioPublicaciones {
         return cantidad
     }
 
+    /**
+     * Devuelve true si eiste una publicacion con el titulo dado que este activa y false de lo contrario.
+     * 
+     * @param {string} titulo 
+     * @returns {boolean}
+     */
     existePublicacionActiva(titulo) {
         let existe = false
         if (this.#publicaciones.find(p => (p.titulo == titulo) && (p.estaActiva()))) {
@@ -71,7 +88,10 @@ export class RepositorioPublicaciones {
         return existe
     }
 
+    /**
+     * Imprime por consola el resumen de todas las publicaciones activas, uno por linea.
+     */
     resumenGeneral() {
-        this.filtrarActivas
+        this.filtrarActivas().forEach(p => console.log(p.mostrarResumen()))
     }
 }

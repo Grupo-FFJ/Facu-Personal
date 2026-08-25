@@ -12,6 +12,11 @@ export class PublicacionVenta extends Publicacion{
         this.#stock = 1
     }
 
+    /**
+     * Devuelve un string formado por el resumen de Publicacion, y ademas los atributos precio y stock.
+     * 
+     * @returns {string}
+     */
     mostrarResumen() {
         return super.mostrarResumen() + `\nPrecio: ${this.#precio} \nStock: ${this.#stock}`
     }
