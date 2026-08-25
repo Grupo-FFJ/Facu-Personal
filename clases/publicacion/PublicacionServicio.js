@@ -12,6 +12,8 @@ export class PublicacionServicio extends Publicacion {
         this.#duracionMinutos = duracionMinutos
     }
 
+    // hacer la asignacion de la modalidad para que solo se pueda asignar las modalidades Presencial o Virtual.
+
     /**
      * Devuelve un string formado por el resumen de Publicacion, y ademas los atributos modalidad y  duracion.
      * 

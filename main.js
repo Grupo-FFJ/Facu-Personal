@@ -1,17 +1,19 @@
-import { Publicacion } from "./Publicacion.js";
-import { RepositorioPublicaciones } from "./RepositorioPublicaciones.js";
-import { Usuario } from "./Usuario.js";
+import { PublicacionServicio } from "./clases/publicacion/PublicacionServicio.js";
+import { PublicacionVenta } from "./clases/publicacion/PublicacionVenta.js";
+import { Publicacion } from "./clases/publicacion/Publicacion.js";
+import { Usuario } from "./clases/Usuario.js";
+import { RepositorioPublicaciones } from "./clases/RepositorioPublicaciones.js";
 
 const usuario1 = new Usuario("Manolo", "mail@1")
 const usuario2 = new Usuario("Romina", "mail@2")
 const usuario3 = new Usuario("Joaquin", "mail@3")
 
 const publicaciones = [
-    new Publicacion("Vendo comida", "Tengo empanadas y facturas", usuario1),
-    new Publicacion("Doy clases", "De tango", usuario3),
-    new Publicacion("Vendo auto", "Gol", usuario2),
-    new Publicacion("Particular de Mates", "Hasta analisi 2", usuario3),
-    new Publicacion("Otra publicacion", "No se me ocurre nada", usuario3)
+    new PublicacionVenta("Vendo comida", "Tengo empanadas y facturas", usuario1, 3000),
+    new PublicacionServicio("Doy clases", "De tango", usuario3, "Presencial", 120),
+    new PublicacionVenta("Vendo auto", "Gol", usuario2, 2200),
+    new PublicacionServicio("Particular de Mates", "Hasta analisis 2", usuario3, "Virtual", 60),
+    new PublicacionServicio("Otra publicacion", "No se me ocurre nada", usuario3, "Presencial", 25)
 ]
 
 publicaciones[0].cambiarActiva()
@@ -32,3 +34,5 @@ console.log(repositorioPublis.cantidadTotal())
 repositorioPublis.buscarPorUsuario("Joaquin").forEach(p => console.log(p.mostrarResumen()))
 
 console.log(repositorioPublis.publicacionMasReciente().mostrarResumen())
+
+repositorioPublis.resumenGeneral()
