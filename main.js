@@ -3,6 +3,7 @@ import { PublicacionVenta } from "./clases/publicacion/PublicacionVenta.js";
 import { Publicacion } from "./clases/publicacion/Publicacion.js";
 import { Usuario } from "./clases/Usuario.js";
 import { RepositorioPublicaciones } from "./clases/RepositorioPublicaciones.js";
+import { Reglas } from "./clases/Reglas";
 
 const usuario1 = new Usuario("Manolo", "mail@1")
 const usuario2 = new Usuario("Romina", "mail@2")
@@ -36,3 +37,11 @@ repositorioPublis.buscarPorUsuario("Joaquin").forEach(p => console.log(p.mostrar
 console.log(repositorioPublis.publicacionMasReciente().mostrarResumen())
 
 repositorioPublis.resumenGeneral()
+
+
+/** @type {Reglas} */
+const reglasPublicaciones = new Reglas(
+    3,
+    12,
+    300,
+)

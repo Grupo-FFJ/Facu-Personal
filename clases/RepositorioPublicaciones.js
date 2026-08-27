@@ -94,4 +94,20 @@ export class RepositorioPublicaciones {
     resumenGeneral() {
         this.filtrarActivas().forEach(p => console.log(p.mostrarResumen()))
     }
+
+    /**
+     * Devuelve un array con todas las publicaciones que son de la misma clase que el objecto dado.
+     * 
+     * @param {Object} claseConstructor 
+     * @returns {Array<Publicacion>}
+     */
+    listarPorTipo(claseConstructor) {
+        return this.#publicaciones.filter(p => p instanceof claseConstructor)
+    }
+
+    listarResumenes() {
+        // .map((currentValue, index[opcional], actualArray[opcional]) => function)
+        // la funcion ya retorna un array con cada pocision siendo el callback que se llama. 
+        return this.#publicaciones.map((p) => p.mostrarResumen())
+    }
 }
