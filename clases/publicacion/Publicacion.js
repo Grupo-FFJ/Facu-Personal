@@ -1,6 +1,7 @@
 import { Resenia } from "../Resenia.js"
 import { Usuario } from "../Usuario.js"
 
+
 export class Publicacion {
     /** @type {string} */
     #titulo

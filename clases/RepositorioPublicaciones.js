@@ -1,18 +1,30 @@
+import { EventEmitter } from "node:events";
 import { Publicacion } from "./publicacion/Publicacion.js"
 
-export class RepositorioPublicaciones {
+/**
+ * @extends EventEmitter
+ */
+export class RepositorioPublicaciones extends EventEmitter {
     /** @type {Array <Publicacion>} */
     #publicaciones
 
     constructor() {
+        super()
         this.#publicaciones = []
     }
 
     /**
+     * @event RepositorioPublicaciones#publicacionAgregada
+     * @type {Publicacion}
+     */
+
+    /**
      * @param {Publicacion}
+     * @fires RepositorioPublicaciones#publicacionAgregada
      */
     agregar(publicacion) {
         this.#publicaciones.push(publicacion)
+        this.emit("publicacionAgregada", publicacion)
     }
 
     /**
@@ -109,5 +121,16 @@ export class RepositorioPublicaciones {
         // .map((currentValue, index[opcional], actualArray[opcional]) => function)
         // la funcion ya retorna un array con cada pocision siendo el callback que se llama. 
         return this.#publicaciones.map((p) => p.mostrarResumen())
+    }
+
+    async publicarConDemora(publicacion) {
+        const resultado = await new Promise((resolve, reject) => {
+            console.log("Procesando publicacion...")
+            setTimeout (() => {
+                this.agregar(publicacion)
+                resolve("Se finalizo la publicacion agendada")
+            }, 5000)
+        })
+        console.log(resultado)
     }
 }

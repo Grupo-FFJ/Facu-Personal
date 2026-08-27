@@ -3,7 +3,8 @@ import { PublicacionVenta } from "./clases/publicacion/PublicacionVenta.js";
 import { Publicacion } from "./clases/publicacion/Publicacion.js";
 import { Usuario } from "./clases/Usuario.js";
 import { RepositorioPublicaciones } from "./clases/RepositorioPublicaciones.js";
-import { Reglas } from "./clases/Reglas";
+import { Reglas } from "./clases/Reglas.js";
+import { EventEmitter } from "node:events";
 
 const usuario1 = new Usuario("Manolo", "mail@1")
 const usuario2 = new Usuario("Romina", "mail@2")
@@ -29,15 +30,18 @@ const primerPubli = publicaciones.find(p => p.autor.nombre == usuario3.nombre)
 console.log(primerPubli.mostrarResumen())
 
 const repositorioPublis = new RepositorioPublicaciones()
+repositorioPublis.on("publicacionAgregada", (p) => console.log(`Agregado titulo: ${p.titulo}`))
+repositorioPublis.on("publicacionAgregada", (p) => console.log(`Agregado autor: ${p.autor.nombre}`))
+
 publicaciones.forEach(p => repositorioPublis.agregar(p))
+// console.log(repositorioPublis.cantidadTotal())
+// repositorioPublis.buscarPorUsuario("Joaquin").forEach(p => console.log(p.mostrarResumen()))
 
-console.log(repositorioPublis.cantidadTotal())
-repositorioPublis.buscarPorUsuario("Joaquin").forEach(p => console.log(p.mostrarResumen()))
+// console.log(repositorioPublis.publicacionMasReciente().mostrarResumen())
 
-console.log(repositorioPublis.publicacionMasReciente().mostrarResumen())
+// repositorioPublis.resumenGeneral()
 
-repositorioPublis.resumenGeneral()
-
+repositorioPublis.publicarConDemora(publicaciones[0])
 
 /** @type {Reglas} */
 const reglasPublicaciones = new Reglas(
