@@ -5,6 +5,8 @@ export class Usuario {
     #email
     /** @type {Date} */
     #fechaRegistro
+    /** @type {Array<Usuario>} */
+    #contactos
 
     /**
      * 
@@ -15,6 +17,7 @@ export class Usuario {
         this.#nombre = nombre
         this.#email = email
         this.#fechaRegistro = new Date()
+        this.#contactos = []
     }
 
     // Getters
@@ -43,5 +46,9 @@ export class Usuario {
 
     cambiarEmail(newEmail) {
         this.#email = newEmail
+    }
+
+    agregarContacto(contacto) {
+        this.#contactos.push(contacto)
     }
 }
